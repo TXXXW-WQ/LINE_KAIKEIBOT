@@ -1,7 +1,7 @@
 /**
  * 会計報告の開始
  */
-function handleStart () {
+function StartFilling () {
   this.session = { 
     step: 1,
     clubName: null, 
@@ -23,5 +23,5 @@ function handleStart () {
     }
   };
 
-  sendReplyWithMessageAndQuickReply('会計報告を開始します。部活名の**頭文字**を選択するか、正式名称を入力してください。', quickReplyPayload);
+  sendReplyWithMessageAndQuickReply(this.replyToken,'会計報告を開始します。部活名の**頭文字**を選択するか、正式名称を入力してください。', quickReplyPayload);
 }

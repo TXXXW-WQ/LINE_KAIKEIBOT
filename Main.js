@@ -73,3 +73,4 @@ function replyLineMessage(replyToken, text) {
     Logger.log('LINE Reply API call failed: ' + e);
   }
 }
+
