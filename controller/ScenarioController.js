@@ -20,13 +20,49 @@ class ScenarioController {
       };
     }
   }
+
+  // セッションデータを保存するメソッド
+  saveSession() {
+    this.userProp.setProperty(this.userId, JSON.stringify(this.session));
+  }
+
+  deleteSession() {
+    this.userProp.deleteProperty(this.userId);
+    // メモリ上のセッションも初期化
+    this.session = {
+      step: 0, // 初期状態
+      clubName: null,
+      usage: null, 
+      objective: null,
+      price: null, 
+      receipt_image: null
+    };
+    Logger.log(`User ${this.userId} のセッションデータを削除しました。`);
+  }
+
   /**
    * 受信したメッセージに基づき、状態を更新し応答を返す
    * @param {string} userText - ユーザーが送信したテキスト
    */
   handleMessage(userText) {
-    if(userText === "報告開始" && this.session.step === 0) {
-      handleStart.call(this)
+    
+    let shouldSave = true; // セッション保存フラグ
+
+    if (userText === "報告開始" && this.session.step === 0) {
+      StartFilling.call(this)
+    } else if (this.session.step === 1) {
+      SelectClubName.call(this, userText);
+    } else if (userText === "報告終了") {
+      this.deleteSession();
+      shouldSave = false;
+      SendReply(this.replyToken,"セッションデータを削除しました。");
+    } else {
+      SendError(this.replyToken)
+    }
+
+    // セッションデータを保存
+    if (shouldSave) {
+      this.saveSession();
     }
   }
 

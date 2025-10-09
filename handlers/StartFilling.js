@@ -18,7 +18,13 @@ function StartFilling () {
         { type: "action", action: { type: "message", label: "か行", text: "か行" } },
         { type: "action", action: { type: "message", label: "さ行", text: "さ行" } },
         { type: "action", action: { type: "message", label: "た行", text: "た行" } },
-        { type: "action", action: { type: "message", label: "その他・入力", text: "その他・入力" } }
+        { type: "action", action: { type: "message", label: "な行", text: "な行" } },
+        { type: "action", action: { type: "message", label: "は行", text: "は行" } },
+        { type: "action", action: { type: "message", label: "ま行", text: "ま行" } },
+        { type: "action", action: { type: "message", label: "や行", text: "や行" } },
+        { type: "action", action: { type: "message", label: "ら行", text: "ら行" } },
+        { type: "action", action: { type: "message", label: "わ行", text: "わ行" } },
+        
       ]
     }
   };
