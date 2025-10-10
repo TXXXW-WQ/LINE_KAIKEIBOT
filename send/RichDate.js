@@ -1,26 +1,35 @@
-/**
- * 簡単なテキストメッセージをreplymessageで返す関数
- */
-function SendReply(replyToken, text) {
-  // スクリプトプロパティからアクセストークンを取得
+function SendRichDate(replyToken) {
+
   const CHANNEL_ACCESS_TOKEN = PropertiesService.getScriptProperties().getProperty('LINE_CHANNEL_ACCESS_TOKEN');
-  
+
   if (!CHANNEL_ACCESS_TOKEN) {
     Logger.log('エラー: チャネルアクセストークンが設定されていません。');
     return;
   }
 
   const url = 'https://api.line.me/v2/bot/message/reply';
-  
+
   const payload = {
     replyToken: replyToken,
-    messages: [
-      {
-        type: 'text',
-        text: text,
+    massage: [{
+      "type": "template",
+      "altText": "日付を選択してください",
+      "template": {
+        "type": "buttons",
+        "text": "報告日を入力してください。",
+        "actions": [
+          {
+            "type": "datetimepicker",
+            "label": "カレンダーから選択",
+            "data": "action=select_report_date",
+            "mode": "date",
+            "initial": "2025-10-10",
+            "max": "2030-12-31"
+          }
+        ]
       }
-    ]
-  };
+    }]
+  }
 
   const options = {
     'method': 'post',
@@ -34,8 +43,12 @@ function SendReply(replyToken, text) {
 
   try {
     const response = UrlFetchApp.fetch(url, options);
+    const result = JSON.parse(response.getContentText() || '{}');
     console.log('LINE APIレスポンス: ' + response.getResponseCode());
+    console.log(result);
+    return result;
   } catch (e) {
     console.log('API実行中にエラーが発生しました: ' + e.toString());
+    return { status: 'error', message: e.toString() };
   }
 }

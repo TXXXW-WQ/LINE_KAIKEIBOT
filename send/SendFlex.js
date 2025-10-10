@@ -7,7 +7,7 @@ function sendFlexMessage(replyToken, flexJson) {
   const CHANNEL_ACCESS_TOKEN = PropertiesService.getScriptProperties().getProperty('LINE_CHANNEL_ACCESS_TOKEN');
   
   if (!CHANNEL_ACCESS_TOKEN) {
-    Logger.log('エラー: チャネルアクセストークンが設定されていません。');
+    console.log('エラー: チャネルアクセストークンが設定されていません。');
     return { status: 'error', message: 'Channel access token is missing.' };
   }
 
@@ -34,10 +34,10 @@ function sendFlexMessage(replyToken, flexJson) {
 
   try {
     const response = UrlFetchApp.fetch(url, options);
-    Logger.log('LINE API Flexレスポンス: ' + response.getResponseCode());
+    console.log('LINE API Flexレスポンス: ' + response.getResponseCode());
     return JSON.parse(response.getContentText() || '{}');
   } catch (e) {
-    Logger.log('API実行中にエラーが発生しました: ' + e.toString());
+    console.log('API実行中にエラーが発生しました: ' + e.toString());
     return { status: 'error', message: e.toString() };
   }
 }

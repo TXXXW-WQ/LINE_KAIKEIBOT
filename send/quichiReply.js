@@ -4,7 +4,7 @@ function sendReplyWithMessageAndQuickReply(replyToken, text, quickReplyPayload) 
   const CHANNEL_ACCESS_TOKEN = PropertiesService.getScriptProperties().getProperty('LINE_CHANNEL_ACCESS_TOKEN');
   
   if (!CHANNEL_ACCESS_TOKEN) {
-    Logger.log('エラー: チャネルアクセストークンが設定されていません。');
+   console.log('エラー: チャネルアクセストークンが設定されていません。');
     return { status: 'error', message: 'Channel access token is missing.' };
   }
 
@@ -36,11 +36,11 @@ function sendReplyWithMessageAndQuickReply(replyToken, text, quickReplyPayload) 
   try {
     const response = UrlFetchApp.fetch(url, options);
     const result = JSON.parse(response.getContentText() || '{}');
-    Logger.log('LINE APIレスポンス: ' + response.getResponseCode());
-    Logger.log(result);
+    console.log('LINE APIレスポンス: ' + response.getResponseCode());
+    console.log(result);
     return result;
   } catch (e) {
-    Logger.log('API実行中にエラーが発生しました: ' + e.toString());
+    console.log('API実行中にエラーが発生しました: ' + e.toString());
     return { status: 'error', message: e.toString() };
   }
 }
