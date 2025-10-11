@@ -59,6 +59,8 @@ class ScenarioController {
         SelectClubName.call(this, userText);
       } else if (this.session.step === 2) {
         Date.call(this, userText);
+      } else if (this.session.step === 3) {
+        Price.call(this, userText);
       } else {
         SendError(this.replyToken);
         this.deleteSession();
