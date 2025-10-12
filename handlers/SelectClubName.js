@@ -52,7 +52,7 @@ function SelectClubName(initial) {
     // フィルタリング結果に基づきFlex Messageのcontentsを生成 ★
 
     if (clubList.length === 0) {
-      SendReply(replyToken, `「${initial}」から始まる部活は見つかりませんでした。\n正式名称を直接入力してください。`);
+      SendReply(replyToken, `「${initial}」から始まる部活は見つかりませんでした。\n正式名称の一文字目を平仮名で入力してください。`);
       return;
     }
 
@@ -99,7 +99,7 @@ function SelectClubName(initial) {
           },
           {
             "type": "text",
-            "text": "正式名称を選択するか、直接入力してください。",
+            "text": "部活動名を選択したください。",
             "size": "sm",
             "align": "center",
             "margin": "md"

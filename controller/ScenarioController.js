@@ -13,6 +13,7 @@ class ScenarioController {
       this.session = {
         step: 0, // 初期状態
         clubName: null, // 部活名
+        date: null, // 日付(部費を使用した日付)
         usage: null, // 使用用途
         objective: null, // 使用目的
         price: null, // 使用金額
@@ -48,31 +49,32 @@ class ScenarioController {
 
     let shouldSave = true; // セッション保存フラグ
 
-      if (userText === "報告終了") {
-        this.deleteSession();
-        shouldSave = false;
-        SendReply(this.replyToken, "セッションデータを削除しました。");
-      }
-      if (userText === "報告開始" && this.session.step === 0) {
-        StartFilling.call(this)
-      } else if (this.session.step === 1) {
-        SelectClubName.call(this, userText);
-      } else if (this.session.step === 2) {
-        Date.call(this, userText);
-      } else if (this.session.step === 3) {
-        Price.call(this, userText);
-      } else {
-        SendError(this.replyToken);
-        this.deleteSession();
-      }
+    if (userText === "報告終了") {
+      // デバック用
+      console.log(userText);
+      this.deleteSession();
+      shouldSave = false;
+      SendReply(this.replyToken, "セッションデータを削除しました。");
+    }
+    if (userText === "報告開始" && this.session.step === 0) {
+      StartFilling.call(this)
+    } else if (this.session.step === 1) {
+      SelectClubName.call(this, userText);
+    } else if (this.session.step === 2) {
+      console.log("日付選択のセッションに移動");
+      SelectDate.call(this, userText);
+    } else if (this.session.step === 3) {
+      console.log("priceのセッションに移動");
+      Price.call(this, userText);
+    } else {
+      SendError(this.replyToken);
+      this.deleteSession();
+    }
 
     // セッションデータを保存
     if (shouldSave) {
       this.saveSession();
     }
-
-    // デバック用
-    console.log(userText);
   }
 
 }

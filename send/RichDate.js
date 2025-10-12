@@ -9,9 +9,10 @@ function SendRichDate(replyToken) {
 
   const url = 'https://api.line.me/v2/bot/message/reply';
 
+  const today = Utilities.formatDate(new Date(), 'JST', 'yyyy-MM-dd');
   const payload = {
     replyToken: replyToken,
-    massage: [{
+    messages: [{
       "type": "template",
       "altText": "日付を選択してください",
       "template": {
@@ -23,13 +24,15 @@ function SendRichDate(replyToken) {
             "label": "カレンダーから選択",
             "data": "action=select_report_date",
             "mode": "date",
-            "initial": "2025-10-10",
+            "initial": today,
             "max": "2030-12-31"
           }
         ]
       }
     }]
   }
+  // デバック用
+  console.log(payload);
 
   const options = {
     'method': 'post',
@@ -38,7 +41,7 @@ function SendRichDate(replyToken) {
       'Content-Type': 'application/json'
     },
     'payload': JSON.stringify(payload),
-    'muteHttpExceptions': true 
+    'muteHttpExceptions': true
   };
 
   try {

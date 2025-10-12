@@ -1,4 +1,4 @@
-function Date(clubName) {
+function SelectDate(clubName) {
   try {
     const replyToken = this.replyToken;
 
