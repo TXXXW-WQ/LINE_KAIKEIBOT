@@ -1,7 +1,7 @@
 /**
  * 簡単なテキストメッセージをreplymessageで返す関数
  */
-function SendReply(replyToken, text) {
+function sendReply(replyToken, text) {
   // スクリプトプロパティからアクセストークンを取得
   const CHANNEL_ACCESS_TOKEN = PropertiesService.getScriptProperties().getProperty('LINE_CHANNEL_ACCESS_TOKEN');
   

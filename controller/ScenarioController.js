@@ -33,6 +33,7 @@ class ScenarioController {
     this.session = {
       step: 0, // 初期状態
       clubName: null,
+      date: null,
       usage: null,
       objective: null,
       price: null,
@@ -64,10 +65,13 @@ class ScenarioController {
       console.log("日付選択のセッションに移動");
       SelectDate.call(this, userText);
     } else if (this.session.step === 3) {
+      console.log("日付確定のセッションに移動");
+      FixingDate.call(this, userText);
+    } else if (this.session.step === 4) {
       console.log("priceのセッションに移動");
       Price.call(this, userText);
     } else {
-      SendError(this.replyToken);
+      sendError(this.replyToken);
       this.deleteSession();
     }
 

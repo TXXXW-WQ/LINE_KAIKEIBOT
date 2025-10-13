@@ -1,4 +1,4 @@
-function Price (date) {
+function Price (inputdate) {
   try {
     const replyToken = this.replyToken;
 
@@ -7,9 +7,9 @@ function Price (date) {
 
     this.session = {
       step: 4,
-      date:date
+      date: inputdate
     };
-    SendReply(replyToken, "日付を受信しました")
+    sendReply(replyToken, "使った金額を半角英数字で入力してください。(空白や全角数字は入力しないでください)")
   } catch (e) {
     console.error(e, "Priceセッション中にエラーが発生しました。");
   }

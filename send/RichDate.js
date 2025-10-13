@@ -1,4 +1,4 @@
-function SendRichDate(replyToken) {
+function sendRichDate(replyToken) {
 
   const CHANNEL_ACCESS_TOKEN = PropertiesService.getScriptProperties().getProperty('LINE_CHANNEL_ACCESS_TOKEN');
 

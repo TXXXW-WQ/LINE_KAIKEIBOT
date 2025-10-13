@@ -1,4 +1,4 @@
-function SendError(replyToken) {
+function sendError(replyToken) {
   const CHANNEL_ACCESS_TOKEN = PropertiesService.getScriptProperties().getProperty('LINE_CHANNEL_ACCESS_TOKEN');
 
   if (!CHANNEL_ACCESS_TOKEN) {
