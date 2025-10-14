@@ -55,7 +55,7 @@ class ScenarioController {
       console.log(userText);
       this.deleteSession();
       shouldSave = false;
-      SendReply(this.replyToken, "セッションデータを削除しました。");
+      sendReply(this.replyToken, "セッションデータを削除しました。");
     }
     if (userText === "報告開始" && this.session.step === 0) {
       StartFilling.call(this)
@@ -70,6 +70,9 @@ class ScenarioController {
     } else if (this.session.step === 4) {
       console.log("priceのセッションに移動");
       Price.call(this, userText);
+    } else if (this.session.step === 5) {
+      console.log("usageのセッションに移動");
+      Usage.call(this, userText);
     } else {
       sendError(this.replyToken);
       this.deleteSession();

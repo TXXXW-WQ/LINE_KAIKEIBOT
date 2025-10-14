@@ -26,7 +26,6 @@ function sendFixingDateButton(replyToken, Yer, Mon, Day) {
               "text": "日付に間違いがなければ確定ボタンを押してください",
               "wrap": true,
               "size": "sm",
-              "align": "center",
               "margin": "md"
               
             },
