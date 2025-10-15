@@ -1,15 +1,16 @@
-function Price (inputdate) {
+function Price(inputdate) {
   try {
     const replyToken = this.replyToken;
-
+    const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+    const sheet = spreadsheet.getSheetByName('会計ログ');
     if (!replyToken) return;
 
 
     this.session = {
-      step: 5,
+      step: 4,
       date: inputdate
     };
-    sendReply(replyToken, "使った金額を半角英数字で入力してください。\n※空白や全角数字は入力しないでください")
+    sendReply(replyToken, "使った金額を半角英数字で入力してください。(空白や全角数字は入力しないでください)")
   } catch (e) {
     console.error(e, "Priceセッション中にエラーが発生しました。");
   }
