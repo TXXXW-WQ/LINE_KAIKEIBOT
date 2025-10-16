@@ -4,6 +4,8 @@ function SelectDate(clubName) {
 
     if (!replyToken) return;
 
+    sendRichDate(replyToken);
+    
     this.session = {
       step: 3,
       clubName: clubName,
@@ -11,7 +13,6 @@ function SelectDate(clubName) {
       usage: null,
       receiptId: null
     };
-    sendRichDate(replyToken)
   } catch (e) {
     console.error(e, "日付セッション中にエラーが発生しました。");
   }

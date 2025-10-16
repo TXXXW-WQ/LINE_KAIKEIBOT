@@ -7,14 +7,6 @@ function StartFilling() {
     
     if(!replyToken) return;
 
-    this.session = {
-      step: 1,
-      clubName: null,
-      amount: null,
-      usage: null,
-      receiptId: null
-    };
-
     // クイックリプライを定義
     const quickReplyPayload = {
       quickReply: {
@@ -33,7 +25,16 @@ function StartFilling() {
         ]
       }
     };
-    sendReplyWithMessageAndQuickReply(replyToken, "部活動名の一文字目を選択してください", quickReplyPayload)
+    sendReplyWithMessageAndQuickReply(replyToken, "部活動の一文字目をひらがなで入力してください。", quickReplyPayload)
+
+    this.session = {
+      step: 1,
+      clubName: null,
+      amount: null,
+      usage: null,
+      receiptId: null
+    };
+    
   } catch (e) {
     console.error(e, "報告開始セッション中にエラーが発生しました");
     return;

@@ -4,14 +4,6 @@ function SelectClubName(initial) {
     const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
     const sheet = spreadsheet.getSheetByName('部活マスタ');
 
-    this.session = {
-      step: 2,
-      clubName: null,
-      amount: null,
-      usage: null,
-      receiptId: null
-    };
-
     // A列（部活名）とB列（ひともじめ）の2列を取得
     const lastRow = sheet.getLastRow();
     if (lastRow < 2) return [];
@@ -114,6 +106,14 @@ function SelectClubName(initial) {
 
     // sendFlexMessage は、以前に定義した Flex Message 送信用のヘルパー関数を使用
     sendFlexMessage(replyToken, flexJson);
+
+    this.session = {
+      step: 2,
+      clubName: null,
+      amount: null,
+      usage: null,
+      receiptId: null
+    };
 
   } catch (e) {
     console.log('スプレッドシートからのデータ取得中にエラーが発生: ' + e.toString());
