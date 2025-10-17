@@ -73,6 +73,9 @@ class ScenarioController {
     } else if (this.session.step === 5) {
       console.log("usageのセッションに移動");
       Usage.call(this, userText);
+    } else if (this.session.step === 6) {
+      console.log("usageのセッションに移動");
+      Ovejective.call(this, userText);
     } else {
       sendError(this.replyToken);
       this.deleteSession();

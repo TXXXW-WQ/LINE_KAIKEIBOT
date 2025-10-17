@@ -109,10 +109,6 @@ function SelectClubName(initial) {
 
     this.session = {
       step: 2,
-      clubName: null,
-      amount: null,
-      usage: null,
-      receiptId: null
     };
 
   } catch (e) {

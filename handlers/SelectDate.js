@@ -9,9 +9,6 @@ function SelectDate(clubName) {
     this.session = {
       step: 3,
       clubName: clubName,
-      amount: null,
-      usage: null,
-      receiptId: null
     };
   } catch (e) {
     console.error(e, "日付セッション中にエラーが発生しました。");
