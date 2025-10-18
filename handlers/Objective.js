@@ -3,6 +3,7 @@ function Ovejective (userText) {
     const replyToken = this.replyToken;
     sendReply(replyToken, "領収書の画像を送信してください。");
     this.session = {
+      ...this.session,
       step: 7,
       objective: userText,
     };

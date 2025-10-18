@@ -7,6 +7,7 @@ function SelectDate(clubName) {
     sendRichDate(replyToken);
     
     this.session = {
+      ...this.session,
       step: 3,
       clubName: clubName,
     };

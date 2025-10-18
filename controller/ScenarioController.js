@@ -8,7 +8,7 @@ class ScenarioController {
     const sessionJson = this.userProp.getProperty(this.userId);
     this.session = JSON.parse(sessionJson || '{}');
 
-    // 未定義のセッションフィールドを初期化
+    // this.session=={}の場合=>セッションフィールドを初期化
     if (!this.session.step) {
       this.session = {
         step: 0, // 初期状態
@@ -52,7 +52,7 @@ class ScenarioController {
 
     if (userText === "報告終了") {
       // デバック用
-      console.log(userText);
+      Logger.log(userText);
       this.deleteSession();
       shouldSave = false;
       sendReply(this.replyToken, "セッションデータを削除しました。");
@@ -84,6 +84,9 @@ class ScenarioController {
     // セッションデータを保存
     if (shouldSave) {
       this.saveSession();
+      Logger.log('セッション情報を保存しました。');
+      Logger.log(this.session);
+
     }
   }
 

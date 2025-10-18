@@ -108,6 +108,7 @@ function SelectClubName(initial) {
     sendFlexMessage(replyToken, flexJson);
 
     this.session = {
+      ...this.session,
       step: 2,
     };
 

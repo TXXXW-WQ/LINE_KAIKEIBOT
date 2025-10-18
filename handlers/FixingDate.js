@@ -3,6 +3,7 @@ function FixingDate(receivedDate) {
 
   if (!replyToken) return;
   this.session = {
+    ...this.session,
     step: 4
   }
   const [Yer, Mon, Day] = receivedDate.split("-");

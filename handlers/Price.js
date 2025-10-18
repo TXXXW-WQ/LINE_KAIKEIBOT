@@ -6,6 +6,7 @@ function Price(inputdate) {
     sendReply(replyToken, "使用金額を半角数字で入力してください。\n※空白や単位は入力しないでください。")
 
     this.session = {
+      ...this.session,
       step:5,
       date:inputdate
     }
