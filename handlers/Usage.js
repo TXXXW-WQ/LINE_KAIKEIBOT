@@ -37,7 +37,7 @@ function Usage(inputdate) {
       sendReply(replyToken, "使用用途を入力してください。\n (例)ボール");
       this.session = {
         ...this.session,
-        step: 5,
+        step: 6,
         price: amount
       };
 
