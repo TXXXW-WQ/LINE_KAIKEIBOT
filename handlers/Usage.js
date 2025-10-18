@@ -12,8 +12,8 @@ function Usage(inputdate) {
     }
     const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
     const sheet = spreadsheet.getSheetByName('残高');
+    const lastRow = sheet.getLastRow();
     const range = sheet.getRange(2, 1, lastRow - 1, 2);
-    const balance = range.getValues();
     const balanceData = range.getValues();
 
     let checkBlance = null
@@ -38,7 +38,7 @@ function Usage(inputdate) {
       this.session = {
         ...this.session,
         step: 5,
-        date: amount
+        price: amount
       };
 
     } else {
@@ -48,6 +48,6 @@ function Usage(inputdate) {
 
 
   } catch (e) {
-    console.error(e, "Priceセッション中にエラーが発生しました。");
+    console.error(e, "Usageセッション中にエラーが発生しました。");
   }
 }
