@@ -62,20 +62,17 @@ class ScenarioController {
     } else if (this.session.step === 1) {
       SelectClubName.call(this, userText);
     } else if (this.session.step === 2) {
-      console.log("日付選択のセッションに移動");
       SelectDate.call(this, userText);
     } else if (this.session.step === 3) {
-      console.log("日付確定のセッションに移動");
       FixingDate.call(this, userText);
     } else if (this.session.step === 4) {
-      console.log("priceのセッションに移動");
       Price.call(this, userText);
     } else if (this.session.step === 5) {
-      console.log("usageのセッションに移動");
       Usage.call(this, userText);
     } else if (this.session.step === 6) {
-      console.log("usageのセッションに移動");
       Ovejective.call(this, userText);
+    } else if (this.session.step === 7) {
+      Image.call(this, userText);
     } else {
       sendError(this.replyToken);
       this.deleteSession();
