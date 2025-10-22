@@ -2,9 +2,8 @@
  * webhookによって受信したcontentIdをもとにAPIでコンテンツを取得？
  * @param {string}
  */
-function Image(inputDate) {
-  const contentJson = inputDate.json();
+function Image(messageId) {
   
-  Logger.log(contentJson);
-  const url = "https://api-data.line.me/v2/bot/message/{messageId}/content";
+  const url = `https://api-data.line.me/v2/bot/message/${messageId}/content`;
+  
 }

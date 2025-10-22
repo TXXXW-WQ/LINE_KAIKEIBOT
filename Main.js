@@ -18,6 +18,8 @@ function doPost(e) {
       userText = event.message.text;
     } else if (event.type === 'postback') {
       userText = event.postback.params.date
+    } else if (event.type == "image") {
+      userText = event.massage.id;
     }
     
     // ユーザーIDは非同期処理（Push API）で使うため、Reply APIでは必須ではないが一応取得
