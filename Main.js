@@ -1,7 +1,3 @@
-// スクリプトプロパティからアクセストークンを取得
-const PROPERTIES = PropertiesService.getScriptProperties().getProperties();
-const REPLY_API_URL = 'https://api.line.me/v2/bot/message/reply';
-
 function doPost(e) {
   const contens = JSON.parse(e.postData.contents);
   const events = contens.events;
