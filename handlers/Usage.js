@@ -40,7 +40,7 @@ function Usage(inputdate) {
         step: 6,
         price: amount
       };
-
+      
     } else {
       sendReply(replyToken, "入力値が正しくありません\n使った金額を半角英数字で入力してください。(空白や全角数字は入力しないでください)");
       return
@@ -48,6 +48,6 @@ function Usage(inputdate) {
 
 
   } catch (e) {
-    Logger.error(e, "Usageセッション中にエラーが発生しました。");
+    Logger.log(e, "Usageセッション中にエラーが発生しました。");
   }
 }

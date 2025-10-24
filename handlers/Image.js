@@ -10,7 +10,7 @@ function Image(messageId) {
       throw new Error("APIキーが設定されていません。スクリプトプロパティを確認してください。");
     }
   } catch {
-    ///
+    Logger.log('領収書の画像処理中にエラーが発生しました。')
   }
   
 }

@@ -9,7 +9,7 @@ function Ovejective (userText) {
     };
 
   }catch (e) {
-    Logger.error(e, "使用目的入力セッション中にエラーが発生しました。")
+    Logger.log(e, "使用目的入力セッション中にエラーが発生しました。")
   }
   
 }
