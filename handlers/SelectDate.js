@@ -12,6 +12,6 @@ function SelectDate(clubName) {
       clubName: clubName,
     };
   } catch (e) {
-    console.error(e, "日付セッション中にエラーが発生しました。");
+    Logger.error(e, "日付セッション中にエラーが発生しました。");
   }
 }

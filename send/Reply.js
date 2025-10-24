@@ -34,8 +34,8 @@ function sendReply(replyToken, text) {
 
   try {
     const response = UrlFetchApp.fetch(url, options);
-    console.log('LINE APIレスポンス: ' + response.getResponseCode());
+    Logger.log('LINE APIレスポンス: ' + response.getResponseCode());
   } catch (e) {
-    console.log('API実行中にエラーが発生しました: ' + e.toString());
+    Logger.log('API実行中にエラーが発生しました: ' + e.toString());
   }
 }

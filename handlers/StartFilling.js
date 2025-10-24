@@ -34,7 +34,7 @@ function StartFilling() {
     Logger.log('startFilling内でセッション更新');
     Logger.log(this.session);
   } catch (e) {
-    console.error(e, "報告開始セッション中にエラーが発生しました");
+    Logger.error(e, "報告開始セッション中にエラーが発生しました");
     return;
   }
 

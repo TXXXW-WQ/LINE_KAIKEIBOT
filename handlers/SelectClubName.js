@@ -113,7 +113,7 @@ function SelectClubName(initial) {
     };
 
   } catch (e) {
-    console.log('スプレッドシートからのデータ取得中にエラーが発生: ' + e.toString());
+    Logger.log('スプレッドシートからのデータ取得中にエラーが発生: ' + e.toString());
     return [];
   }
 }

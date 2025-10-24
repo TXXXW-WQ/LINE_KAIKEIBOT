@@ -48,6 +48,6 @@ function Usage(inputdate) {
 
 
   } catch (e) {
-    console.error(e, "Usageセッション中にエラーが発生しました。");
+    Logger.error(e, "Usageセッション中にエラーが発生しました。");
   }
 }

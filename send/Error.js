@@ -2,7 +2,7 @@ function sendError(replyToken) {
   const CHANNEL_ACCESS_TOKEN = PropertiesService.getScriptProperties().getProperty('LINE_CHANNEL_ACCESS_TOKEN');
 
   if (!CHANNEL_ACCESS_TOKEN) {
-    console.log('エラー: チャネルアクセストークンが設定されていません。');
+    Logger.log('エラー: チャネルアクセストークンが設定されていません。');
     return { status: 'error', message: 'Channel access token is missing.' };
   }
 
@@ -32,11 +32,11 @@ function sendError(replyToken) {
   try {
     const response = UrlFetchApp.fetch(url, options);
     const result = JSON.parse(response.getContentText() || '{}');
-    console.log('LINE APIレスポンス: ' + response.getResponseCode());
-    console.log(result);
+    Logger.log('LINE APIレスポンス: ' + response.getResponseCode());
+    Logger.log(result);
     return result;
   } catch (e) {
-    console.log('API実行中にエラーが発生しました: ' + e.toString());
+    Logger.log('API実行中にエラーが発生しました: ' + e.toString());
     return { status: 'error', message: e.toString() };
   }
 }

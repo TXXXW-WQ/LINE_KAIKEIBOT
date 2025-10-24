@@ -39,7 +39,7 @@ class ScenarioController {
       price: null,
       receipt_image: null
     };
-    console.log(`User ${this.userId} のセッションデータを削除しました。`);
+    Logger.log(`User ${this.userId} のセッションデータを削除しました。`);
   }
 
   /**

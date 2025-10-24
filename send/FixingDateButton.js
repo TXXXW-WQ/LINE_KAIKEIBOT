@@ -2,7 +2,7 @@ function sendFixingDateButton(replyToken, Yer, Mon, Day) {
   const CHANNEL_ACCESS_TOKEN = PropertiesService.getScriptProperties().getProperty('LINE_CHANNEL_ACCESS_TOKEN');
 
   if (!CHANNEL_ACCESS_TOKEN) {
-    console.log('エラー: チャネルアクセストークンが設定されていません。');
+    Logger.log('エラー: チャネルアクセストークンが設定されていません。');
     return { status: 'error', message: 'Channel access token is missing.' };
   }
 
@@ -70,10 +70,10 @@ function sendFixingDateButton(replyToken, Yer, Mon, Day) {
 
   try {
     const response = UrlFetchApp.fetch(url, options);
-    console.log('LINE API Flexレスポンス: ' + response.getResponseCode());
+    Logger.log('LINE API Flexレスポンス: ' + response.getResponseCode());
     return JSON.parse(response.getContentText() || '{}');
   } catch (e) {
-    console.log('API実行中にエラーが発生しました: ' + e.toString());
+    Logger.log('API実行中にエラーが発生しました: ' + e.toString());
     return { status: 'error', message: e.toString() };
   }
 }

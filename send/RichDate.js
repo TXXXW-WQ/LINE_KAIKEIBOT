@@ -32,7 +32,7 @@ function sendRichDate(replyToken) {
     }]
   }
   // デバック用
-  console.log(payload);
+  Logger.log(payload);
 
   const options = {
     'method': 'post',
@@ -47,11 +47,11 @@ function sendRichDate(replyToken) {
   try {
     const response = UrlFetchApp.fetch(url, options);
     const result = JSON.parse(response.getContentText() || '{}');
-    console.log('LINE APIレスポンス: ' + response.getResponseCode());
-    console.log(result);
+    Logger.log('LINE APIレスポンス: ' + response.getResponseCode());
+    Logger.log(result);
     return result;
   } catch (e) {
-    console.log('API実行中にエラーが発生しました: ' + e.toString());
+    Logger.log('API実行中にエラーが発生しました: ' + e.toString());
     return { status: 'error', message: e.toString() };
   }
 }

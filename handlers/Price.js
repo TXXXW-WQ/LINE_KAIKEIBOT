@@ -12,6 +12,6 @@ function Price(inputdate) {
     }
     
   } catch (e) {
-    console.error(e, "Priceセッション中にエラーが発生しました。");
+    Logger.error(e, "Priceセッション中にエラーが発生しました。");
   }
 }
