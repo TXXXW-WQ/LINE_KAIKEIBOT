@@ -9,6 +9,12 @@ function Image(messageId) {
     if (!API_KEY) {
       throw new Error("APIキーが設定されていません。スクリプトプロパティを確認してください。");
     }
+    this.session = {
+      ...this.session,
+      step: 8,
+      receipt_image: image
+    }
+    return 
   } catch {
     Logger.log('領収書の画像処理中にエラーが発生しました。')
   }

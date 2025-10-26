@@ -77,13 +77,16 @@ class ScenarioController {
       sendError(this.replyToken);
       this.deleteSession();
     }
-
+    if (this.session.step == 8) {
+      this.deleteSession()
+      Logger.log("報告を終了します。")
+      return
+    }
     // セッションデータを保存
     if (shouldSave) {
       this.saveSession();
       Logger.log('セッション情報を保存しました。');
       Logger.log(this.session);
-
     }
   }
 
