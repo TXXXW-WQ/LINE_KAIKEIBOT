@@ -3,17 +3,19 @@
  * @param {string}
  */
 function Image(userText) {
-  // const GEMINI_API_KEY =  PropertiesService.getScriptProperties().getProperty('GEMINI_API_KEY');
+  const replyToken = this.replyToken;
+  if (!replyToken) {
+    Logger.log("replyTokenがありません。")
+    return
+  }
   try {
-    // if (!API_KEY) {
-    //   throw new Error("APIキーが設定されていません。スクリプトプロパティを確認してください。");
-    // }
+    sendReply(replyToken, "領収書の画像を送信してください。\nはっきりと文字が識別できるように撮影してください。")
     this.session = {
       ...this.session,
       step: 8,
       objective: userText,
     }
-    return 
+    send
   } catch {
     Logger.log('領収書の画像処理中にエラーが発生しました。')
   }
