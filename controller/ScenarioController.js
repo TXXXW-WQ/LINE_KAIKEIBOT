@@ -73,11 +73,13 @@ class ScenarioController {
       Ovejective.call(this, userText);
     } else if (this.session.step === 7) {
       Image.call(this, userText);
+    } else if (this.session.step === 8) {
+      ValidateImage.call(this, userText);
     } else {
       sendError(this.replyToken);
       this.deleteSession();
     }
-    if (this.session.step == 8) {
+    if (this.session.step == 12) {
       this.deleteSession()
       Logger.log("報告を終了します。")
       return
