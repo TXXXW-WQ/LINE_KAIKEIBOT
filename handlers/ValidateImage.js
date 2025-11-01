@@ -1,7 +1,8 @@
 function ValidateImage(messageId) {
   try {
-    const image = `https://api-data.line.me/v2/bot/message/${messageId}/content`;
+    const url = `https://api-data.line.me/v2/bot/message/${messageId}/content`;
     // Logger.log('画像の取得に成功しました。')
+    const response = UrlFetchApp.fetch(url);
     this.session = {
       ...this.session,
       step:9,
