@@ -9,15 +9,17 @@ function doPost(e) {
     // 応答トークン（Reply Token）は即時応答に必須
     const replyToken = event.replyToken;
     let userText = null;
-    // イベントタイプが 'message' かつ メッセージタイプが 'text' の場合のみ処理
+
     if (event.type === 'message' && event.message.type === 'text') {
       userText = event.message.text;
+    } else if (event.type === 'message' && event.message.type === 'image') {
+      userText = event.message.id;
     } else if (event.type === 'postback') {
       userText = event.postback.params.date
-    } else if (event.type == "image") {
-      userText = event.massage.id;
+    } else {
+      Logger.log('無効なイベントタイプです')
+      return
     }
-    
     // ユーザーIDは非同期処理（Push API）で使うため、Reply APIでは必須ではないが一応取得
     const userId = event.source.userId;
 

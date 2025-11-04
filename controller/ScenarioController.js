@@ -17,7 +17,6 @@ class ScenarioController {
         usage: null, // 使用用途
         objective: null, // 使用目的
         price: null, // 使用金額
-        receipt_image: null // 領収書の画像
       };
     }
   }
@@ -57,23 +56,24 @@ class ScenarioController {
       shouldSave = false;
       sendReply(this.replyToken, "セッションデータを削除しました。");
     }
+    
     if (userText === "報告開始" && this.session.step === 0) {
       StartFilling.call(this)
-    } else if (this.session.step === 1) {
+    } else if (this.session.step === 1 || userText == "ステップ1") {
       SelectClubName.call(this, userText);
-    } else if (this.session.step === 2) {
+    } else if (this.session.step === 2 || userText == "ステップ2") {
       SelectDate.call(this, userText);
-    } else if (this.session.step === 3) {
+    } else if (this.session.step === 3 || userText == "ステップ3") {
       FixingDate.call(this, userText);
-    } else if (this.session.step === 4) {
+    } else if (this.session.step === 4 || userText == "ステップ4") {
       Price.call(this, userText);
-    } else if (this.session.step === 5) {
+    } else if (this.session.step === 5 || userText == "ステップ5") {
       Usage.call(this, userText);
-    } else if (this.session.step === 6) {
+    } else if (this.session.step === 6 || userText == "ステップ6") {
       Ovejective.call(this, userText);
-    } else if (this.session.step === 7) {
+    } else if (this.session.step === 7 || userText == "ステップ7") {
       Image.call(this, userText);
-    } else if (this.session.step === 8) {
+    } else if (this.session.step === 8 || userText == "ステップ8") {
       ValidateImage.call(this, userText);
     } else {
       sendError(this.replyToken);
