@@ -36,34 +36,34 @@ function ValidateImage(messageId) {
       // ファイルをGoogle Driveに保存
       const folder = DriveApp.getFolderById(FOLDER_ID);
       const file = folder.createFile(imageBlob);
+
       const PROMPT_TEXT = `
       画像から金額を抽出してください。
       以下の優先順位で金額を探してください：
-      1. 合計、総額、お支払い金額、計、小計
-      2. 最も大きい金額
-      3. ¥マークまたは円の後の数字
-
-      見つかった金額を数値のみで返してください。
+      1. 合計金額、総額、お支払い金額、計、小計
+      合計金額だけを数値のみで返してください。
       例: 1100
 
       金額のみを数値で回答してください。
       `;
       const payload = {
-        contents: [
-          {
-            parts: [
-              {
-                inlineData: {
-                  data: Utilities.base64Encode(imageBlobForGemini.getBytes()), // BlobをBase64エンコード
-                  mimeType: imageBlobForGemini.getContentType(),              // MIMEタイプを指定
-                },
-              },
-              {
-                text: PROMPT_TEXT,
-              },
-            ],
-          },
-        ],
+        "contents": [{
+          "parts": [
+            { "text": PROMPT_TEXT },
+            {
+              "inline_data": {
+                "mime_type": mimeType,
+                "data": base64Data
+              }
+            }
+          ]
+        }],
+        "generationConfig": {
+          "temperature": 0.1,
+          "topK": 1,
+          "topP": 0.95,
+          "maxOutputTokens": 100
+        }
       };
 
       const options = {
@@ -75,6 +75,7 @@ function ValidateImage(messageId) {
 
       const geminiResponse = UrlFetchApp.fetch(API_URL, options);
       Logger.log('画像をGoogle Driveに保存しました。URL: ' + file.getUrl());
+
 
 
       this.session = {
