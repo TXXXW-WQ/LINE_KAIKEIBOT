@@ -17,6 +17,7 @@ class ScenarioController {
         usage: null, // 使用用途
         objective: null, // 使用目的
         price: null, // 使用金額
+        endFlag: False // 報告終了の判定
       };
     }
   }
@@ -79,7 +80,7 @@ class ScenarioController {
       sendError(this.replyToken);
       this.deleteSession();
     }
-    if (this.session.step == 12) {
+    if (this.session.endFlag) {
       this.deleteSession()
       Logger.log("報告を終了します。")
       return
