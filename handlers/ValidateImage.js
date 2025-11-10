@@ -4,10 +4,7 @@ function ValidateImage(messageId) {
     const SPREADSHEET_URL = '（ここに画像を挿入したいスプレッドシートのURLを貼り付け）'; // ★変更：対象スプレッドシートのURL
     const SHEET_NAME = 'シート1'; // ★変更：対象シート名
     const TARGET_CELL = 'A1'; // ★変更：画像を挿入したいセル（例: 'A1'）
-    if (!OCR_GEMINI_API_KEY) {
-      Logger.log('エラー:GEMINI_API_KEYがありません。');
-      return
-    }
+    
     if (!CHANNEL_ACCESS_TOKEN) {
       Logger.log('エラー: チャネルアクセストークンが設定されていません。');
       return
@@ -31,9 +28,9 @@ function ValidateImage(messageId) {
       const base64EncodedImage = Utilities.base64Encode(imageBlob.getBytes());
       Logger.log('Base64エンコードが完了しました。');
 
-      const ocrResultAmount = OcrImage(base64EncodedImage)
+      const ocrResultAmount = OcrImage(base64EncodedImage, mimeType)
 
-      if (ocrResultAmount == this.session.price) {
+      if (ocrResultAmount == this.session.price && ocrResultAmount != 0) {
         Logger.log('画像の金額と入力された金額が一致しました。')
         sendReply(this.replyToken, "報告が完了しました。セッションを終了します")
         this.session = {
@@ -41,7 +38,8 @@ function ValidateImage(messageId) {
           step: 10,
           endFlag: True
         }
-        // スプレッドシートへの書き込みと終了処理
+        // スプレッドシートへの書き込みと終了処理-未実装
+
       } else {
         this.session = {
           ...this.session,

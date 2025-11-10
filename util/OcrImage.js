@@ -1,11 +1,15 @@
-function OcrImage(base64EncodedImage) {
-  const OCR_GEMINI_API_KEY = PropertiesService.getScriptProperties().getProperty('OCR_GEMINI_API_KEY');
+function OcrImage(base64EncodedImage, mimeType) {
+  const OCR_GEMINI_API_KEY = PropertiesService.getScriptProperties().getProperty('GEMINI_API_KEY');
+  if (!OCR_GEMINI_API_KEY) {
+    Logger.log('エラー:GEMINI_API_KEYがありません。');
+    return
+  }
   const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${OCR_GEMINI_API_KEY}`;
   const PROMPT_TEXT = `
-      画像から金額を抽出してください。
-      合計金額を数値のみで返してください。
-      例: 1100
-      `;
+    画像からレシートの合計金額を抽出してください。
+    抽出した金額を**数値のみ**で、以下のJSON形式で返してください。
+    { "amount": (ここに抽出した金額) }
+  `;
   const payload = {
     "contents": [{
       "parts": [
@@ -36,16 +40,17 @@ function OcrImage(base64EncodedImage) {
 
   try {
     const geminiResponse = UrlFetchApp.fetch(API_URL, geminiOptions);
+    const responseCode = geminiResponse.getResponseCode();
 
     if (responseCode !== 200) {
       Logger.log(`Gemini API呼び出し失敗: ${responseCode} - ${geminiResponse.getContentText()}`);
-      return;
+      return 0;
     }
     const responseText = geminiResponse.getContentText();
     const responseJson = JSON.parse(responseText);
+    Logger.log(responseJson)
     // モデルの応答からテキスト部分を抽出
-    const extractedText = responseJson.candidates[0].content.parts[0].text.trim();
-    extractedAmount = parseInt(extractedText, 10);
+    const extractedAmount = parseInt(responseJson.amount, 10);
     Logger.log(`抽出された金額 (Gemini): ${extractedAmount}`);
     return extractedAmount
   } catch (e) {

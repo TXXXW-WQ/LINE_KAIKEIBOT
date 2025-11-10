@@ -17,7 +17,7 @@ class ScenarioController {
         usage: null, // 使用用途
         objective: null, // 使用目的
         price: null, // 使用金額
-        endFlag: False // 報告終了の判定
+        endFlag: false // 報告終了の判定
       };
     }
   }
