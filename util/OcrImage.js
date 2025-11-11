@@ -27,7 +27,7 @@ function OcrImage(base64EncodedImage, mimeType) {
       "temperature": 0.1,
       "topK": 1,
       "topP": 0.95,
-      "maxOutputTokens": 100
+      "maxOutputTokens": 512
     }
   };
 
@@ -40,19 +40,23 @@ function OcrImage(base64EncodedImage, mimeType) {
 
   try {
     const geminiResponse = UrlFetchApp.fetch(API_URL, geminiOptions);
-    const responseCode = geminiResponse.getResponseCode();
-
-    if (responseCode !== 200) {
-      Logger.log(`Gemini API呼び出し失敗: ${responseCode} - ${geminiResponse.getContentText()}`);
-      return 0;
-    }
     const responseText = geminiResponse.getContentText();
     const responseJson = JSON.parse(responseText);
     Logger.log(responseJson)
-    // モデルの応答からテキスト部分を抽出
-    const extractedAmount = parseInt(responseJson.amount, 10);
+    // モデルの応答内容（JSON文字列）を抽出する
+    // 完全な修正案（最初のインデックスアクセスも安全にする）
+    const modelOutputText = responseJson.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (!modelOutputText) {
+      Logger.log("モデルから有効なJSON応答が得られませんでした。");
+      return 0;
+    }
+
+    // JSON文字列をパースして金額オブジェクトを取得する
+    const amountObject = JSON.parse(modelOutputText);
+
+    const extractedAmount = parseInt(amountObject.amount, 10) || 0; // 整数に変換し、失敗時は0
     Logger.log(`抽出された金額 (Gemini): ${extractedAmount}`);
-    return extractedAmount
+    return extractedAmount;
   } catch (e) {
     Logger.log('OCR金額抽出中にエラーが発生しました。:' + e.toString())
     return

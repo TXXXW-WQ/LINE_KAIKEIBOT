@@ -30,13 +30,13 @@ function ValidateImage(messageId) {
 
       const ocrResultAmount = OcrImage(base64EncodedImage, mimeType)
 
-      if (ocrResultAmount == this.session.price && ocrResultAmount != 0) {
+      if (ocrResultAmount === this.session.price && ocrResultAmount != 0) {
         Logger.log('画像の金額と入力された金額が一致しました。')
         sendReply(this.replyToken, "報告が完了しました。セッションを終了します")
         this.session = {
           ...this.session,
           step: 10,
-          endFlag: True
+          endFlag: true
         }
         // スプレッドシートへの書き込みと終了処理-未実装
 
