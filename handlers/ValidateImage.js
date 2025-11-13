@@ -1,10 +1,7 @@
 function ValidateImage(messageId) {
   try {
     const CHANNEL_ACCESS_TOKEN = PropertiesService.getScriptProperties().getProperty('LINE_CHANNEL_ACCESS_TOKEN');
-    const SPREADSHEET_URL = '（ここに画像を挿入したいスプレッドシートのURLを貼り付け）'; // ★変更：対象スプレッドシートのURL
-    const SHEET_NAME = 'シート1'; // ★変更：対象シート名
-    const TARGET_CELL = 'A1'; // ★変更：画像を挿入したいセル（例: 'A1'）
-    
+
     if (!CHANNEL_ACCESS_TOKEN) {
       Logger.log('エラー: チャネルアクセストークンが設定されていません。');
       return
@@ -39,7 +36,14 @@ function ValidateImage(messageId) {
           endFlag: true
         }
         // スプレッドシートへの書き込みと終了処理-未実装
-
+        const SPREED_FAIL = SpreadsheetApp.getActiveSpreadsheet();
+        const sheet = SPREED_FAIL.getSheetByName('会計ログ')
+        const startRow = sheet.getLastRow() + 1;
+        const sessionInfo = Object.values(this.session)
+        const culum = sessionInfo.length
+        const addRange = sheet.getRange(startRow,1,1,culum)
+        const inputDate = [sessionInfo]
+        addRange.setValues(inputDate)
       } else {
         this.session = {
           ...this.session,
