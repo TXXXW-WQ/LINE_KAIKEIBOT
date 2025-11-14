@@ -39,7 +39,8 @@ function ValidateImage(messageId) {
         const SPREED_FAIL = SpreadsheetApp.getActiveSpreadsheet();
         const sheet = SPREED_FAIL.getSheetByName('会計ログ')
         const startRow = sheet.getLastRow() + 1;
-        const sessionInfo = Object.values(this.session)
+        const filteringKey = ["date", "clubName", "price", "usage", "objective"]
+        const sessionInfo = filteringKey.map(key => this.session[key])
         const culum = sessionInfo.length
         const addRange = sheet.getRange(startRow,1,1,culum)
         const inputDate = [sessionInfo]
