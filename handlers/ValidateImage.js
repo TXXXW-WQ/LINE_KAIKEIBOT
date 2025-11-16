@@ -35,16 +35,19 @@ function ValidateImage(messageId) {
           step: 10,
           endFlag: true
         }
-        // スプレッドシートへの書き込みと終了処理-未実装
+        // セッション情報をスプレッドシートへの書き込む
         const SPREED_FAIL = SpreadsheetApp.getActiveSpreadsheet();
         const sheet = SPREED_FAIL.getSheetByName('会計ログ')
         const startRow = sheet.getLastRow() + 1;
         const filteringKey = ["date", "clubName", "price", "usage", "objective"]
         const sessionInfo = filteringKey.map(key => this.session[key])
         const culum = sessionInfo.length
-        const addRange = sheet.getRange(startRow,1,1,culum)
+        const addRange = sheet.getRange(startRow, 1, 1, culum)
         const inputDate = [sessionInfo]
         addRange.setValues(inputDate)
+
+        // セッション情報をスプレッドシートへの書き込む
+        const sheet_amount = SPREED_FAIL.getSheetByName('残高')
       } else {
         this.session = {
           ...this.session,
