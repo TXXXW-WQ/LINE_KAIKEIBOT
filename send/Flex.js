@@ -5,20 +5,67 @@
  */
 function sendFlexMessage(replyToken, flexJson) {
   const CHANNEL_ACCESS_TOKEN = PropertiesService.getScriptProperties().getProperty('LINE_CHANNEL_ACCESS_TOKEN');
-  
+
   if (!CHANNEL_ACCESS_TOKEN) {
     Logger.log('エラー: チャネルアクセストークンが設定されていません。');
     return { status: 'error', message: 'Channel access token is missing.' };
   }
 
   const url = 'https://api.line.me/v2/bot/message/reply';
-  
+
   const payload = {
     replyToken: replyToken,
     messages: [{
       type: "flex",
       altText: "部活名を選択してください。", // 通知として表示される代替テキスト
       contents: flexJson // ここに bubble または carousel のJSONが入る
+    },
+    {
+      type: "flex",
+      altText: "前の選択肢に戻るボタン", // Flexの場合はaltTextが必要です
+      contents: { // ここに Flex Message の Bubble オブジェクトを定義します
+        type: "bubble",
+        body: {
+          type: "box",
+          layout: "vertical",
+          contents: [
+            {
+              type: "text",
+              text: "メニュー", 
+              algin: "center",
+              wrap: true,
+              weight: "bold"
+            }
+          ]
+        },
+        footer: { 
+          type: "box",
+          layout: "vertical",
+          spacing: "sm",
+          contents: [
+            {
+              type: "button",
+              style: "link", 
+              height: "sm",
+              action: {
+                type: "message",
+                label: "一つ戻る",
+                text: "一つ戻る" 
+              }
+            },
+            {
+              type: "button",
+              style: "link", 
+              height: "sm",
+              action: {
+                type: "message",
+                label: "報告をキャンセル",
+                text: "報告をキャンセル" 
+              }
+            }
+          ]
+        }
+      }
     }]
   };
 
@@ -29,7 +76,7 @@ function sendFlexMessage(replyToken, flexJson) {
       'Content-Type': 'application/json'
     },
     'payload': JSON.stringify(payload),
-    'muteHttpExceptions': true 
+    'muteHttpExceptions': true
   };
 
   try {
