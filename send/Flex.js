@@ -32,7 +32,7 @@ function sendFlexMessage(replyToken, flexJson) {
             {
               type: "text",
               text: "メニュー", 
-              algin: "center",
+              align: "center",
               wrap: true,
               weight: "bold"
             }
