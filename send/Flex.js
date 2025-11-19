@@ -17,13 +17,13 @@ function sendFlexMessage(replyToken, flexJson) {
     replyToken: replyToken,
     messages: [{
       type: "flex",
-      altText: "部活名を選択してください。", // 通知として表示される代替テキスト
-      contents: flexJson // ここに bubble または carousel のJSONが入る
+      altText: "部活名を選択してください。", 
+      contents: flexJson 
     },
     {
       type: "flex",
-      altText: "前の選択肢に戻るボタン", // Flexの場合はaltTextが必要です
-      contents: { // ここに Flex Message の Bubble オブジェクトを定義します
+      altText: "前の選択肢に戻るボタン", 
+      contents: {
         type: "bubble",
         body: {
           type: "box",
