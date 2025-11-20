@@ -27,6 +27,13 @@ class ScenarioController {
     this.userProp.setProperty(this.userId, JSON.stringify(this.session));
   }
 
+  backSession() {
+    const curStep = this.session.step
+    this.session = {
+      ...this.session,
+      step: curStep - 1
+    }
+  }
   deleteSession() {
     this.userProp.deleteProperty(this.userId);
     // メモリ上のセッションも初期化
@@ -57,7 +64,12 @@ class ScenarioController {
       shouldSave = false;
       sendReply(this.replyToken, "セッションデータを削除しました。");
     }
-    
+    if (userText == "一つ戻る") {
+      this.backSession()
+    } else if (userText == "報告キャンセル") {
+      this.deleteSession()
+      Logger.log('報告をキャンセルしました。')
+    }
     if (userText === "報告開始" && this.session.step === 0) {
       StartFilling.call(this)
     } else if (this.session.step === 1 || userText == "ステップ1") {
