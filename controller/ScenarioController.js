@@ -89,8 +89,8 @@ class ScenarioController {
     } else if (this.session.step === 8 || userText == "ステップ8") {
       ValidateImage.call(this, userText);
     } else {
-      sendError(this.replyToken);
       this.deleteSession();
+      return
     }
     if (this.session.endFlag) {
       this.deleteSession()
