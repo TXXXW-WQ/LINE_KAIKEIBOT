@@ -69,6 +69,8 @@ class ScenarioController {
     } else if (userText == "報告キャンセル") {
       this.deleteSession()
       Logger.log('報告をキャンセルしました。')
+      sendReply(this.replyToken, "セッションデータを削除しました。");
+      return
     }
     if (userText === "報告開始" && this.session.step === 0) {
       StartFilling.call(this)
