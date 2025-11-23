@@ -29,7 +29,7 @@ function ValidateImage(messageId) {
 
       if (ocrResultAmount === this.session.price && ocrResultAmount != 0) {
         Logger.log('画像の金額と入力された金額が一致しました。')
-        sendReply(this.replyToken, "報告が完了しました。セッションを終了します")
+        sendReplyAndButton(this.replyToken, "報告が完了しました。セッションを終了します")
         this.session = {
           ...this.session,
           step: 10,
@@ -53,7 +53,7 @@ function ValidateImage(messageId) {
           ...this.session,
           step: 9,
         }
-        sendReply(this.replyToken, "領収書の金額と入力された金額の検証に失敗しました。\nもう一度画像を送信するか初めからやり直してください。")
+        sendReplyAndButton(this.replyToken, "領収書の金額と入力された金額の検証に失敗しました。\nもう一度画像を送信するか初めからやり直してください。")
         return
       }
 

@@ -33,8 +33,8 @@ function Usage(inputdate) {
     if (!checkBlance) return;
 
     if (checkBlance - amount >= 0) {
-
-      sendReply(replyToken, "使用用途を入力してください。\n (例)ボール");
+      Logger.log(amount)
+      sendReplyAndButton(replyToken, "使用用途を入力してください。\n (例)ボール");
       this.session = {
         ...this.session,
         step: 6,
@@ -42,7 +42,7 @@ function Usage(inputdate) {
       };
       
     } else {
-      sendReply(replyToken, "入力値が正しくありません\n使った金額を半角英数字で入力してください。(空白や全角数字は入力しないでください)");
+      sendReplyAndButton(replyToken, "入力値が正しくありません\n使った金額を半角英数字で入力してください。(空白や全角数字は入力しないでください)");
       return
     }
 

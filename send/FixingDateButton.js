@@ -28,7 +28,7 @@ function sendFixingDateButton(replyToken, Yer, Mon, Day) {
               "size": "sm",
               "align": "center",
               "margin": "md"
-              
+
             },
             {
               "type": "text",
@@ -52,6 +52,21 @@ function sendFixingDateButton(replyToken, Yer, Mon, Day) {
               }
             }
           ]
+        }
+      },
+      footer: {
+        type: "box",
+        layout: "vertical",
+        spacing: "sm",
+        contents: {
+          type: "button",
+          style: "link",
+          height: "sm",
+          action: {
+            type: "message",
+            label: "報告をキャンセル",
+            text: "報告をキャンセル"
+          }
         }
       }
     }]

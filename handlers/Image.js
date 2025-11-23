@@ -9,7 +9,7 @@ function Image(userText) {
     return
   }
   try {
-    sendReply(replyToken, "領収書の画像を送信してください。\nはっきりと文字が識別できるように撮影してください。")
+    sendReplyAndButton(replyToken, "領収書の画像を送信してください。\nはっきりと文字が識別できるように撮影してください。")
     this.session = {
       ...this.session,
       step: 8,

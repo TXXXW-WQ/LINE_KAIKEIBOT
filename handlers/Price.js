@@ -3,7 +3,7 @@ function Price(inputdate) {
     const replyToken = this.replyToken;
     if (!replyToken) return;
 
-    sendReply(replyToken, "使用金額を半角数字で入力してください。\n※空白や単位は入力しないでください。")
+    sendReplyAndButton(replyToken, "使用金額を半角数字で入力してください。\n※空白や単位は入力しないでください。")
 
     this.session = {
       ...this.session,

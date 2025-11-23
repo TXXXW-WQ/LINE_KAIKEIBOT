@@ -64,9 +64,8 @@ class ScenarioController {
       shouldSave = false;
       sendReply(this.replyToken, "セッションデータを削除しました。");
     }
-    if (userText == "一つ戻る") {
-      this.backSession()
-    } else if (userText == "報告キャンセル") {
+
+    if (userText == "報告をキャンセル") {
       this.deleteSession()
       Logger.log('報告をキャンセルしました。')
       sendReply(this.replyToken, "セッションデータを削除しました。");
@@ -90,6 +89,9 @@ class ScenarioController {
       Image.call(this, userText);
     } else if (this.session.step === 8 || userText == "ステップ8") {
       ValidateImage.call(this, userText);
+    } else if (this.session.step === 9 || userText == "ステップ9") {
+      sendEndButton(this.replyTken);
+      this.session.endFlag = true
     } else {
       this.deleteSession();
       return
@@ -103,7 +105,7 @@ class ScenarioController {
     if (shouldSave) {
       this.saveSession();
       Logger.log('セッション情報を保存しました。');
-      Logger.log(this.session);
+      Logger.log(this.session.step);
     }
   }
 

@@ -4,14 +4,14 @@
 function sendReply(replyToken, text) {
   // スクリプトプロパティからアクセストークンを取得
   const CHANNEL_ACCESS_TOKEN = PropertiesService.getScriptProperties().getProperty('LINE_CHANNEL_ACCESS_TOKEN');
-  
+
   if (!CHANNEL_ACCESS_TOKEN) {
     Logger.log('エラー: チャネルアクセストークンが設定されていません。');
     return;
   }
 
   const url = 'https://api.line.me/v2/bot/message/reply';
-  
+
   const payload = {
     replyToken: replyToken,
     messages: [
@@ -29,7 +29,7 @@ function sendReply(replyToken, text) {
       'Content-Type': 'application/json'
     },
     'payload': JSON.stringify(payload),
-    'muteHttpExceptions': true 
+    'muteHttpExceptions': true
   };
 
   try {

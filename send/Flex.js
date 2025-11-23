@@ -17,53 +17,21 @@ function sendFlexMessage(replyToken, flexJson) {
     replyToken: replyToken,
     messages: [{
       type: "flex",
-      altText: "部活名を選択してください。", 
-      contents: flexJson 
-    },
-    {
-      type: "flex",
-      altText: "前の選択肢に戻るボタン", 
-      contents: {
-        type: "bubble",
-        body: {
-          type: "box",
-          layout: "vertical",
-          contents: [
-            {
-              type: "text",
-              text: "メニュー", 
-              align: "center",
-              wrap: true,
-              weight: "bold"
-            }
-          ]
-        },
-        footer: { 
-          type: "box",
-          layout: "vertical",
-          spacing: "sm",
-          contents: [
-            {
-              type: "button",
-              style: "link", 
-              height: "sm",
-              action: {
-                type: "message",
-                label: "一つ戻る",
-                text: "一つ戻る" 
-              }
-            },
-            {
-              type: "button",
-              style: "link", 
-              height: "sm",
-              action: {
-                type: "message",
-                label: "報告をキャンセル",
-                text: "報告をキャンセル" 
-              }
-            }
-          ]
+      altText: "部活名を選択してください。",
+      contents: flexJson,
+      footer: {
+        type: "box",
+        layout: "vertical",
+        spacing: "sm",
+        contents: {
+          type: "button",
+          style: "link",
+          height: "sm",
+          action: {
+            type: "message",
+            label: "報告をキャンセル",
+            text: "報告をキャンセル"
+          }
         }
       }
     }]

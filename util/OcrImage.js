@@ -42,7 +42,9 @@ function OcrImage(base64EncodedImage, mimeType) {
     const geminiResponse = UrlFetchApp.fetch(API_URL, geminiOptions);
     const responseText = geminiResponse.getContentText();
     const responseJson = JSON.parse(responseText);
-    
+    Logger.log(responseJson)
+    // モデルの応答内容（JSON文字列）を抽出する
+    // 完全な修正案（最初のインデックスアクセスも安全にする）
     const modelOutputText = responseJson.candidates?.[0]?.content?.parts?.[0]?.text;
     if (!modelOutputText) {
       Logger.log("モデルから有効なJSON応答が得られませんでした。");
@@ -52,7 +54,7 @@ function OcrImage(base64EncodedImage, mimeType) {
     // JSON文字列をパースして金額オブジェクトを取得する
     const amountObject = JSON.parse(modelOutputText);
 
-    const extractedAmount = parseInt(amountObject.amount, 10) || 0; 
+    const extractedAmount = parseInt(amountObject.amount, 10) || 0; // 整数に変換し、失敗時は0
     Logger.log(`抽出された金額 (Gemini): ${extractedAmount}`);
     return extractedAmount;
   } catch (e) {

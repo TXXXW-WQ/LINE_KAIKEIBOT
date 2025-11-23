@@ -1,7 +1,7 @@
 function Ovejective (userText) {
   try {
     const replyToken = this.replyToken;
-    sendReply(replyToken, "使用目的を入力してください。\n(例)練習のため");
+    sendReplyAndButton(replyToken, "使用目的を入力してください。\n(例)練習のため");
     this.session = {
       ...this.session,
       step: 7,
